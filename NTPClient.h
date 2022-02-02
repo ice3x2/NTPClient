@@ -17,6 +17,7 @@ class NTPClient {
     IPAddress     _poolServerIP;
     unsigned int  _port           = NTP_DEFAULT_LOCAL_PORT;
     long          _timeOffset     = 0;
+	long          _timeout     = 3000;
 
     unsigned long _updateInterval = 60000;  // In ms
 
@@ -36,6 +37,10 @@ class NTPClient {
     NTPClient(UDP& udp, IPAddress poolServerIP);
     NTPClient(UDP& udp, IPAddress poolServerIP, long timeOffset);
     NTPClient(UDP& udp, IPAddress poolServerIP, long timeOffset, unsigned long updateInterval);
+	
+	void setTimeout(long timeout) {
+		_timeout = timeout;
+	}
 
     /**
      * Set time server name
